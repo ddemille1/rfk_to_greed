@@ -66,7 +66,7 @@ def main():
     for n in range(DEFAULT_ARTIFACTS):
         #this picks a random number, and gets the symbol associated with that number in unicode alphabet thingy. This is whats generating the random symbols for the artifacts.
         #this needs to be changed to just give x and o artifacts. 
-        text = chr(random.randint(33, 126))
+        text = chr(random.choice([42, 79]))
         #this is assigning a message to each of the n artifacts
         message = messages[n]
 
