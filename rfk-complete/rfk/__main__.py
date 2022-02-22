@@ -22,8 +22,8 @@ CELL_SIZE = 15
 FONT_SIZE = 15
 COLS = 60
 ROWS = 40
-CAPTION = "Robot Finds Kitten"
-DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
+CAPTION = "Greed"
+#DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
 
@@ -58,17 +58,26 @@ def main():
     #this is getting the data file of random messages, reading it line by line, spliting it up, and returing each line as the message that's displayed when the robot hits the artifact.
 
     #This can be deleted because the new game won't have messages displayed. instead it needs to have points added or subtracted when o/x are hit.
-    with open(DATA_PATH) as file:
-        data = file.read()
-        messages = data.splitlines()
+    #with open(DATA_PATH) as file:
+    #    data = file.read()
+    #    messages = data.splitlines()
+    gain_point = 1
+    lose_point = -1
+    point_value = 0
 
     #this is looping through 40 times (number of default_artifacts)
     for n in range(DEFAULT_ARTIFACTS):
+        
         #this picks a random number, and gets the symbol associated with that number in unicode alphabet thingy. This is whats generating the random symbols for the artifacts.
         #this needs to be changed to just give x and o artifacts. 
         text = chr(random.choice([42, 79]))
         #this is assigning a message to each of the n artifacts
-        message = messages[n]
+        if text == "*":
+            point_value = gain_point
+        elif text == "O":
+            point_value = lose_point  
+
+        #message = messages[n]
 
         #this is generating a random x/y position that will be used to put the artifacts in random places on the screen
         #maybe add some kind of loop to add to the y position to make them move down the screen.
@@ -87,7 +96,7 @@ def main():
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
-        artifact.set_message(message)
+        artifact.set_message(point_value)
         cast.add_actor("artifacts", artifact)
 
     # start the game
