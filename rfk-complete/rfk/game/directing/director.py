@@ -78,9 +78,12 @@ class Director:
          
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
-                score += 1
+                #score += 1
                 cast.remove_actor("artifacts", artifact)
-            banner.set_text(f"Score: {score}") 
+            #     banner.set_text(f"Score: {score}")
+            # else:
+            #     break
+             
         
         
     def _do_outputs(self, cast):
