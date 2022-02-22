@@ -63,35 +63,22 @@ class Director:
         banner = cast.get_first_actor("banners")
         robot = cast.get_first_actor("robots")
         artifacts = cast.get_actors("artifacts")
-
+        
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
+
         #new code
         artifacts = cast.get_actors('artifacts')
         for artifact in artifacts:
             artifact.move_next(max_x, max_y)
-        #end new code
-        
-    #     #new code here, need to get each artifact, loop through, adding to its y coordiante each time. This should make it move down.    
-    # #for i in cast.get_actors("artifacts"):
-    # #    pass    
-    #     #artifacts = cast.get_actors("artifacts")
-        
-    #     for artifact in artifacts:
-    #         #position = artifact.get_position()
-    #         #movement = Point(0, 1)
-    #         artifact.move_next(900, 600)
-    #         #artifact.move_next(0, 1)
-
-    #         #end of new code
-
-
+        #end new code  
+         
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()
-                banner.set_text(message)    
+                banner.set_text(message)  
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
