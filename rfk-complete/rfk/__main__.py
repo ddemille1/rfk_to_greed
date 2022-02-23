@@ -4,6 +4,7 @@ import random
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
+from game.casting.score import Score
 
 from game.directing.director import Director
 
@@ -15,7 +16,7 @@ from game.shared.point import Point
 
 
 
-FRAME_RATE = 12
+FRAME_RATE = 15
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
@@ -41,6 +42,15 @@ def main():
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
     
+    # create the score
+    score = Score()
+    score.set_text("")
+    score.set_font_size(FONT_SIZE)
+    score.set_color(WHITE)
+    score.set_position(Point(CELL_SIZE, 0))
+    cast.add_actor("scores", score)
+
+
     # create the robot
     x = int(MAX_X / 2)
     y = int(570)
