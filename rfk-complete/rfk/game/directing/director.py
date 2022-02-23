@@ -60,32 +60,34 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        score = ""
-        banner = cast.get_first_actor("banners")
+        
         robot = cast.get_first_actor("robots")
         artifacts = cast.get_actors("artifacts")
+        score = cast.get_actors("scores")
         
-        banner.set_text(f"Score: {score}")
+        
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
 
-        #new code
+        #new code, this moves the artifacts
         artifacts = cast.get_actors('artifacts')
         for artifact in artifacts:
             artifact.move_next(max_x, max_y)
         #end new code  
-         
+
+        #This makes the artifacts disappear when the cursor hits them.
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
-                #score += 1
                 cast.remove_actor("artifacts", artifact)
-            #     banner.set_text(f"Score: {score}")
-            # else:
-            #     break
-             
-        
-        
+            
+
+        for artifact in artifacts:
+            if robot.get_position().equals(artifact.get_position()):
+                point_value = artifact.get_message() 
+        display_score = score.sum_score(point_value)
+        score.set_text(f"Score: {display_score}")
+
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
         
@@ -96,3 +98,9 @@ class Director:
         actors = cast.get_all_actors()
         self._video_service.draw_actors(actors)
         self._video_service.flush_buffer()
+
+    # def _score_output(self):
+    #     """This is goint to contain the code for tracking the score """
+    #     score = 0
+    #     banner = cast.get_first_actor("banners")
+    #     banner.set_text(f"Score: {score}")
