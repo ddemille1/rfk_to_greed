@@ -2,7 +2,16 @@
 #from shared.point import Point
 #from point import Point
 from game.shared.point import Point
+import random
+from game.casting.artifact import Artifact
+from game.casting.cast import Cast
+from game.shared.color import Color
 #end new 
+
+CELL_SIZE = 30
+FONT_SIZE = 30
+COLS = 60
+ROWS = 40
 
 class Director:
     """A person who directs the game. 
@@ -77,23 +86,24 @@ class Director:
         #end new code  
 
         #This makes the artifacts disappear when the cursor hits them.
+        point_value = 0
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
                 cast.remove_actor("artifacts", artifact)
-            
+                point_value = artifact.get_message() 
+                score.sum_score(point_value)
+            if artifact.get_position().get_y() == 0:
+                cast.remove_actor("artifacts", artifact)
         #This checkes if # and each * or O are at the same position
         # if true, the point value of the * or O is assigned to a variable
         # this variable is used by the score object to sum the score
         # Then the score is obtained from the score object
         # finally the text of the score object is changed to display the score
         # everything is displayed by video service draw actors later in the game.     
-        point_value = 0
-        for artifact in artifacts:
-            if robot.get_position().equals(artifact.get_position()):
-                point_value = artifact.get_message() 
-                score.sum_score(point_value)
         display_score = score.get_score()
-        
+
+        self._add_new_artifacts(cast)
+
         score.set_text(f"Score: {display_score}")
 
     def _do_outputs(self, cast):
@@ -106,6 +116,44 @@ class Director:
         actors = cast.get_all_actors()
         self._video_service.draw_actors(actors)
         self._video_service.flush_buffer()
+
+    def _add_new_artifacts(self, cast):
+        gain_point = 1
+        lose_point = -1
+        point_value = 0
+
+        num_new_artifacts = random.randint(1,2)
+        #this is looping through 40 times (number of default_artifacts)
+        for n in range(num_new_artifacts):
+            
+            #this picks a random number, and gets the symbol associated with that number in unicode alphabet thingy. This is whats generating the random symbols for the artifacts.
+            #this needs to be changed to just give x and o artifacts. 
+            text = chr(random.choice([42, 79]))
+            #this is assigning a message to each of the n artifacts
+            if text == "*":
+                point_value = gain_point
+            elif text == "O":
+                point_value = lose_point  
+
+            #this is generating a random x position that will be used to put the artifacts
+            #  in random places at the top of the screen
+            x = random.randint(1, COLS - 1)
+            y = 0
+            position = Point(x, y)
+            position = position.scale(CELL_SIZE)
+
+            r = random.randint(0, 255)
+            g = random.randint(0, 255)
+            b = random.randint(0, 255)
+            color = Color(r, g, b)
+            
+            artifact = Artifact()
+            artifact.set_text(text)
+            artifact.set_font_size(FONT_SIZE)
+            artifact.set_color(color)
+            artifact.set_position(position)
+            artifact.set_message(point_value)
+            cast.add_actor("artifacts", artifact)
 
     # def _score_output(self):
     #     """This is goint to contain the code for tracking the score """
