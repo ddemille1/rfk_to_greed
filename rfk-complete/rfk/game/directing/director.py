@@ -81,6 +81,12 @@ class Director:
             if robot.get_position().equals(artifact.get_position()):
                 cast.remove_actor("artifacts", artifact)
             
+        #This checkes if # and each * or O are at the same position
+        # if true, the point value of the * or O is assigned to a variable
+        # this variable is used by the score object to sum the score
+        # Then the score is obtained from the score object
+        # finally the text of the score object is changed to display the score
+        # everything is displayed by video service draw actors later in the game.     
         point_value = 0
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
