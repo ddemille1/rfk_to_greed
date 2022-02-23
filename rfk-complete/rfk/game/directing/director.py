@@ -63,7 +63,7 @@ class Director:
         
         robot = cast.get_first_actor("robots")
         artifacts = cast.get_actors("artifacts")
-        score = cast.get_actors("scores")
+        score = cast.get_first_actor("scores")
         
         
         max_x = self._video_service.get_width()
@@ -81,11 +81,13 @@ class Director:
             if robot.get_position().equals(artifact.get_position()):
                 cast.remove_actor("artifacts", artifact)
             
-
+        point_value = 0
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
                 point_value = artifact.get_message() 
-        display_score = score.sum_score(point_value)
+                score.sum_score(point_value)
+        display_score = score.get_score()
+        
         score.set_text(f"Score: {display_score}")
 
     def _do_outputs(self, cast):

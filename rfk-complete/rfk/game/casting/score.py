@@ -4,7 +4,7 @@ class Score(Actor):
     """This is an actor that keeps track of the score of the game."""
 
     def __init__(self):
-        self._score = ""
+        self._score = 0
         super().__init__()
 
     def get_score(self):
