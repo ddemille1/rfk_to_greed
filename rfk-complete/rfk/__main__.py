@@ -1,6 +1,6 @@
 import os
 import random
-
+import raylib
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
@@ -17,10 +17,10 @@ from game.shared.point import Point
 
 
 FRAME_RATE = 15
-MAX_X = 900
-MAX_Y = 600
-CELL_SIZE = 15
-FONT_SIZE = 15
+MAX_X = 1800
+MAX_Y = 1200
+CELL_SIZE = 30
+FONT_SIZE = 30
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
@@ -53,7 +53,7 @@ def main():
 
     # create the robot
     x = int(MAX_X / 2)
-    y = int(570)
+    y = int(MAX_Y - CELL_SIZE)
     position = Point(x, y)
 
     robot = Actor()
