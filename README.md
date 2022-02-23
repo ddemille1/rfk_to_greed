@@ -1,5 +1,6 @@
 
- 
+## Greed##
+
 **Greed** 
 Greed is a game in which the player seeks to gather as many falling gems as possible. Gather a gem(*) and get a point. Gather a rock(o) and you lose a point. Keep playing until your greed is satisfied.
 
