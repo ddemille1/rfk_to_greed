@@ -2,7 +2,7 @@
 ## Greed
 
 **Greed** 
-Greed is a game in which the player seeks to gather as many falling gems as possible. Gather a gem(*) and get a point. Gather a rock(o) and you lose a point. Keep playing until your greed is satisfied.
+Greed is a game in which the player seeks to gather as many falling gems as possible. Gather a gem(*) and get a point. Gather a rock([]) and you lose a point. Keep playing until your greed is satisfied.
 
 ---
 ## Getting Started
@@ -18,6 +18,8 @@ python3 rfk
 You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the 
 project folder. Select the main module inside the rfk-complete/rkf folder and click the "run" icon.
 
+## Controls
+Use the left and right arrow key on the key board to collect the gems(*) and avoid the rocks([])!
 
 
 ## Project Structure

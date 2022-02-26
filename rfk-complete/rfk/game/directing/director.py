@@ -155,8 +155,3 @@ class Director:
             artifact.set_message(point_value)
             cast.add_actor("artifacts", artifact)
 
-    # def _score_output(self):
-    #     """This is goint to contain the code for tracking the score """
-    #     score = 0
-    #     banner = cast.get_first_actor("banners")
-    #     banner.set_text(f"Score: {score}")
