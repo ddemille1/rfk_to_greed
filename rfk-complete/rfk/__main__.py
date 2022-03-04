@@ -10,6 +10,7 @@ from game.directing.director import Director
 
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
+from game.services.audio_service import AudioService
 
 from game.shared.color import Color
 from game.shared.point import Point
@@ -24,7 +25,7 @@ FONT_SIZE = 30
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
-#DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
+MUSIC_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/cycle_music_game.wav"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 80
 
@@ -64,14 +65,16 @@ def main():
     # lose_point = -1
     # point_value = 0
 
+
         
-  
+
 
 
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-    director = Director(keyboard_service, video_service)
+    audio_service = AudioService(MUSIC_PATH)
+    director = Director(keyboard_service, video_service, audio_service)
     director.start_game(cast)
 
 

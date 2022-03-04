@@ -23,7 +23,7 @@ class Director:
         _video_service (VideoService): For providing video output.
     """
 
-    def __init__(self, keyboard_service, video_service):
+    def __init__(self, keyboard_service, video_service, audio_service):
         """Constructs a new Director using the specified keyboard and video services.
         
         Args:
@@ -32,6 +32,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._audio_service = audio_service
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -40,11 +41,14 @@ class Director:
             cast (Cast): The cast of actors.
         """
         self._video_service.open_window()
+        self._audio_service._start_audio_device()
         while self._video_service.is_window_open():
             self._get_inputs(cast)
             self._do_updates(cast)
             self._do_outputs(cast)
+            self._audio_service._update_music()
         self._video_service.close_window()
+        self._audio_service._close_audio_device()
 
     def _get_inputs(self, cast):
         """Gets directional input from the keyboard and applies it to the robot.
