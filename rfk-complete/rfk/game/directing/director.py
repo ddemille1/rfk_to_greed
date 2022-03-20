@@ -1,6 +1,7 @@
 #new code
 #from shared.point import Point
 #from point import Point
+#import pyray
 from game.shared.point import Point
 import random
 from game.casting.artifact import Artifact
@@ -12,6 +13,7 @@ CELL_SIZE = 30
 FONT_SIZE = 30
 COLS = 60
 ROWS = 40
+#BACKGROUND = pyray.load_texture('pictures\cethiel-desert-edit.png')
 
 class Director:
     """A person who directs the game. 
@@ -47,6 +49,7 @@ class Director:
             self._do_updates(cast)
             self._do_outputs(cast)
             self._audio_service._update_music()
+            
         self._video_service.close_window()
         self._audio_service._close_audio_device()
 
@@ -117,9 +120,13 @@ class Director:
             cast (Cast): The cast of actors.
         """
         self._video_service.clear_buffer()
+        self._video_service.draw_background()
         actors = cast.get_all_actors()
+        
         self._video_service.draw_actors(actors)
+        
         self._video_service.flush_buffer()
+        
 
     def _add_new_artifacts(self, cast):
         gain_point = 1

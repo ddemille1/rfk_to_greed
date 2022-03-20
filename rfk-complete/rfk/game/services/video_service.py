@@ -6,18 +6,20 @@ class VideoService:
     on the screen. 
     """
 
-    def __init__(self, caption, width, height, cell_size, frame_rate, debug = False):
+    def __init__(self, background_path, caption, width, height, cell_size, frame_rate, debug = False):
         """Constructs a new VideoService using the specified debug mode.
         
         Args:
             debug (bool): whether or not to draw in debug mode.
         """
+        self._background_path = background_path
         self._caption = caption
         self._width = width
         self._height = height
         self._cell_size = cell_size
         self._frame_rate = frame_rate
         self._debug = debug
+        
 
     def close_window(self):
         """Closes the window and releases all computing resources."""
@@ -31,7 +33,11 @@ class VideoService:
         pyray.clear_background(pyray.BLACK)
         if self._debug == True:
             self._draw_grid()
-    
+        
+    def draw_background(self):
+        background = pyray.load_texture(self._background_path)
+        pyray.draw_texture(background, 0, 0, pyray.RAYWHITE)
+
     def draw_actor(self, actor):
         """Draws the given actor's text on the screen.
 

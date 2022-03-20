@@ -1,6 +1,7 @@
 import os
 import random
 import raylib
+import pyray
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
@@ -17,9 +18,9 @@ from game.shared.point import Point
 
 
 
-FRAME_RATE = 15
-MAX_X = 1800
-MAX_Y = 900
+FRAME_RATE = 20
+MAX_X = 800
+MAX_Y = 450
 CELL_SIZE = 30
 FONT_SIZE = 30
 COLS = 60
@@ -28,6 +29,8 @@ CAPTION = "Greed"
 MUSIC_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/cycle_music_game.wav"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 80
+BACKGROUND_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/background.png"
+
 
 
 def main():
@@ -72,7 +75,7 @@ def main():
 
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
-    video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
+    video_service = VideoService(BACKGROUND_PATH, CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     audio_service = AudioService(MUSIC_PATH)
     director = Director(keyboard_service, video_service, audio_service)
     director.start_game(cast)
