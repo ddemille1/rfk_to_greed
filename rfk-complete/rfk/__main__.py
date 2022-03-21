@@ -18,7 +18,7 @@ from game.shared.point import Point
 
 FRAME_RATE = 15
 MAX_X = 1800
-MAX_Y = 1200
+MAX_Y = 720
 CELL_SIZE = 30
 FONT_SIZE = 30
 COLS = 60
