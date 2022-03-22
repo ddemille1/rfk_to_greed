@@ -18,7 +18,7 @@ from game.shared.point import Point
 
 
 
-FRAME_RATE = 20
+FRAME_RATE = 2
 MAX_X = 800
 MAX_Y = 450
 CELL_SIZE = 30
@@ -28,7 +28,7 @@ ROWS = 40
 CAPTION = "Greed"
 MUSIC_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/cycle_music_game.wav"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = 80
+DEFAULT_ARTIFACTS = 1
 BACKGROUND_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/background.png"
 
 
