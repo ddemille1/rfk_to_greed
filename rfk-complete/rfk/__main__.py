@@ -1,3 +1,21 @@
+'''Some notes about raylib to python syntax conversion: 
+
+This is the raylib cheatsheet entry: 
+       void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
+
+This is how it's translated into code: 
+    -with "import pyray as rl" preceeding it. 
+    -CHARACTER was defined earlier like this: CHARACTER = rl.load_texture('gfx/character.png')
+        rl.draw_texture_rec(
+                CHARACTER,
+                rl.Rectangle(0, 0, 16, 32),
+                rl.Vector2(20.0, 20.0),
+                rl.RAYWHITE
+            )
+
+
+'''
+
 import os
 import random
 import raylib
