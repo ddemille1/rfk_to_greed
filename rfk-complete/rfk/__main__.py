@@ -1,3 +1,21 @@
+'''Some notes about raylib to python syntax conversion: 
+
+This is the raylib cheatsheet entry: 
+       void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
+
+This is how it's translated into code: 
+    -with "import pyray as rl" preceeding it. 
+    -CHARACTER was defined earlier like this: CHARACTER = rl.load_texture('gfx/character.png')
+        rl.draw_texture_rec(
+                CHARACTER,
+                rl.Rectangle(0, 0, 16, 32),
+                rl.Vector2(20.0, 20.0),
+                rl.RAYWHITE
+            )
+
+
+'''
+
 import os
 import random
 import raylib
@@ -18,7 +36,7 @@ from game.shared.point import Point
 
 
 
-FRAME_RATE = 20
+FRAME_RATE = 2
 MAX_X = 800
 MAX_Y = 450
 CELL_SIZE = 30
@@ -28,7 +46,7 @@ ROWS = 40
 CAPTION = "Greed"
 MUSIC_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/cycle_music_game.wav"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = 80
+DEFAULT_ARTIFACTS = 1
 BACKGROUND_PATH = os.path.dirname(os.path.abspath(__file__)) + "/resources/background.png"
 
 

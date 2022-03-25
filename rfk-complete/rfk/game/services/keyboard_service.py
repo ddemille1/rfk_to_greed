@@ -50,9 +50,9 @@ class KeyboardService:
 
     #new code 
     def move_down(self):
-        """returns a new point that is on cell lower on the y-axis than the previous one"""
-        dx = 0
-        dy = 1
+        """returns a new point that is one cell to the left on the x-axis than the previous one"""
+        dx = -1
+        dy = 0
         movement = Point(dx, dy)
         movement = movement.scale(self._cell_size)
         return movement

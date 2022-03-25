@@ -122,9 +122,7 @@ class Director:
         self._video_service.clear_buffer()
         self._video_service.draw_background()
         actors = cast.get_all_actors()
-        
         self._video_service.draw_actors(actors)
-        
         self._video_service.flush_buffer()
         
 
@@ -148,10 +146,13 @@ class Director:
 
             #this is generating a random x position that will be used to put the artifacts
             #  in random places at the top of the screen
-            x = random.randint(1, COLS - 1)
-            y = 0
+
+            #Changed x and y here so artifacts start at lower right.
+            #also removed scale so it would work better.
+            y = 420
+            x = 790
             position = Point(x, y)
-            position = position.scale(CELL_SIZE)
+            #position = position.scale(CELL_SIZE)
 
             r = random.randint(0, 255)
             g = random.randint(0, 255)
